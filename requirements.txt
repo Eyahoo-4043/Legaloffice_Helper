@@ -19,3 +19,4 @@ openpyxl==3.1.5
 colorama==0.4.6
 packaging==24.2
 typing_extensions==4.13.0
+gunicorn
