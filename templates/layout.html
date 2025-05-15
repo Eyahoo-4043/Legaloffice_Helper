@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>법규제도실 Helper</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Google Fonts - Noto Sans KR for Korean text -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <header class="site-header">
+        <div class="container">
+            <h1 class="site-title">법규제도실 Helper</h1>
+        </div>
+    </header>
+
+    <div class="container">
+        <!-- Tab Navigation -->
+        <div class="tab-nav">
+            <a href="{{ url_for('bill_search') }}" class="tab-item {% if active_tab == 'bills' %}active{% endif %}" data-tab="bills">
+                <i class="fas fa-file-alt me-1"></i> 의안
+            </a>
+            <a href="{{ url_for('member_search') }}" class="tab-item {% if active_tab == 'members' %}active{% endif %}" data-tab="members">
+                <i class="fas fa-user me-1"></i> 의원
+            </a>
+            <a href="{{ url_for('press_mof') }}" class="tab-item {% if active_tab == 'mof' %}active{% endif %}" data-tab="mof">
+                <i class="fas fa-newspaper me-1"></i> 기재부
+            </a>
+            <a href="{{ url_for('press_fsc') }}" class="tab-item {% if active_tab == 'fsc' %}active{% endif %}" data-tab="fsc">
+                <i class="fas fa-newspaper me-1"></i> 금융위
+            </a>
+            <a href="{{ url_for('news_search') }}" class="tab-item {% if active_tab == 'news' %}active{% endif %}" data-tab="news">
+                <i class="fas fa-newspaper me-1"></i> 뉴스
+            </a>
+            <a href="{{ url_for('central_bank_laws') }}" class="tab-item {% if active_tab == 'central_bank' %}active{% endif %}" data-tab="central_bank">
+                <i class="fas fa-university me-1"></i> 해외 중앙은행법
+            </a>
+            <a href="{{ url_for('settings') }}" class="tab-item {% if active_tab == 'settings' %}active{% endif %}" data-tab="settings">
+                <i class="fas fa-cog me-1"></i> 설정
+            </a>
+        </div>
+
+        <!-- Content Area -->
+        {% block content %}{% endblock %}
+    </div>
+
+    <footer class="bg-light py-4 mt-5">
+        <div class="container text-center">
+            <p class="text-muted"></p>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom JavaScript -->
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>

@@ -1,0 +1,129 @@
+1. 제목을 수정할거야    법규제도실 Helper     이걸로 바꿔줘
+2. © 2025 법규제도실 (Legaloffice) - VBA 모듈 1~5 웹 버전    이거 삭제해줘
+3. 뉴스 탭과 설정 탭 사이에 해외 중앙은행법   탭을 추가할거야
+
+페이지 UI는 하단과 같아.
+
+국가명(가나다 순)
+
+국가
+
+가 그리스
+나 남아프리카공화국, 네덜란드, 노르웨이, 뉴질랜드
+다 대만, 덴마크, 독일
+라 러시아, 룩셈부르크
+마 말레이시아, 멕시코, 모로코, 몽골, 미국
+바 베트남, 벨기에, 브라질
+사 사우디아라비아, 스웨덴, 스위스, 스페인, 싱가포르
+아 아랍에미리트, 아르헨티나, 아이슬란드, 아일랜드, 영국, 오스트리아, EU, 이탈리아, 인도, 인도네시아, 일본
+자 중국 
+차 체코
+카 캄보디아, 캐나다, 콜롬비아
+타 태국, 튀르키예
+파 파키스탄, 포르투갈, 폴란드, 프랑스, 핀란드, 필리핀
+하 헝가리, 호주
+
+※ 해당 사이트는 영어 이외의 언어로 구성되어 있을 수 있으므로, 구글 번역 기능을 활용하는 것을 권장드립니다.
+
+이제 기능설명이야
+
+위 국가가 나열된 부분은 가나다 별로 찾을수 있게 표로 표현해줘.
+그리고 각 국가를 클릭하면, 내가 지금 올리는 국가별 사이트를 매칭해서 하이퍼링크로 연결해. 그래서 국가를 클릭하면 해당 사이트로 이동이 가능하게해줘
+
+그리스 https://www.bankofgreece.gr/en/the-bank/legal-framework/statute
+
+남아프리카공화국 https://discover.sabinet.co.za/document/1169411
+
+네덜란드 https://wetten.overheid.nl/BWBR0009508/2025-01-01/0
+
+노르웨이 https://lovdata.no/dokument/NL/lov/2019-06-21-31?q=Sentralbankloven
+
+뉴질랜드 https://www.legislation.govt.nz/act/public/2021/0031/latest/LMS286978.html?search=ts_act%40bill%40regulation%40deemedreg_Reserve+Bank+of+New+Zealand+Act+2021_resel_25_a&p=1
+
+대만 https://www.law.cbc.gov.tw/ELaw/LawSearchShowAll?LawID=LA01001005&selectValue1=AND&selectValue2=AND&keyword1=central%20bank
+
+덴마크 https://www.retsinformation.dk/eli/lta/1936/116
+
+독일 https://www.gesetze-im-internet.de/bbankg/index.html
+
+러시아 http://www.kremlin.ru/acts/bank/18296/page/1
+
+룩셈부르크 https://www.bcl.lu/en/Legal-Framework/documents_national/loi_organique/Organic-law-consol/index.html
+
+말레이시아 https://www.bnm.gov.my/-/central-bank-of-malaysia-act-2009-1
+
+멕시코 https://www.banxico.org.mx/marco-normativo/marco-juridico/ley-del-banco-de-mexico/ley-del-banco-mexico-marco-le.html
+
+모로코 https://www.bkam.ma/en/About-us/Statute-and-missions
+
+몽골 https://www.mongolbank.mn/en/r/2905
+
+미국 https://www.govinfo.gov/app/details/COMPS-270/
+
+베트남 https://vbpl.vn/TW/Pages/vbpq-toanvan.aspx?ItemID=25692&Keyword=Ng%C3%A2n%20h%C3%A0ng%20Nh%C3%A0%20n%C6%B0%E1%BB%9Bc%20Vi%E1%BB%87t%20Nam
+
+벨기에 https://www.ejustice.just.fgov.be/cgi_wet/article.pl?language=nl&sum_date=&pd_search=1998-03-28&numac_search=1998003158&page=1&lg_txt=N&caller=list&1998003158=0&trier=afkondiging&nl=n&nm_ecran=1998003158&choix1=en&choix2=en
+
+브라질 https://www.planalto.gov.br/ccivil_03/leis/l4595.htm
+
+사우디아라비아 https://laws.boe.gov.sa/BoeLaws/Laws/LawDetails/a292ec7e-85fb-4ceb-9ad0-ac9200ced829/1
+
+스웨덴 https://www.riksdagen.se/sv/dokument-och-lagar/dokument/svensk-forfattningssamling/lag-20221568-om-sveriges-riksbank_sfs-2022-1568/
+
+스위스 https://www.fedlex.admin.ch/eli/cc/2004/221/en
+
+스페인 https://www.boe.es/buscar/doc.php?id=BOE-A-1994-12553
+
+싱가포르 https://sso.agc.gov.sg/Act/MASA1970
+
+아랍에미리트 https://uaelegislation.gov.ae/en/legislations/1083?keyword=central%20bank
+
+아르헨티나 https://www.bcra.gob.ar/Institucional/Carta_Organica.asp
+
+아이슬란드 https://www.althingi.is/lagas/nuna/2019092.html
+
+아일랜드 https://revisedacts.lawreform.ie/eli/2010/act/23/front/revised/en/html
+
+영국 https://www.ris.bka.gv.at/GeltendeFassung.wxe?Abfrage=Bundesnormen&Gesetzesnummer=10004409
+
+오스트리아 https://www.ris.bka.gv.at/GeltendeFassung.wxe?Abfrage=Bundesnormen&Gesetzesnummer=10004409
+
+EU https://www.bancaditalia.it/chi-siamo/funzioni-governance/disposizioni-generali/index.html
+
+이탈리아 https://www.bancaditalia.it/chi-siamo/funzioni-governance/disposizioni-generali/index.html
+
+인도 https://www.indiacode.nic.in/handle/123456789/1408?view_type=search&col=123456789/1362
+
+인도네시아 https://www.bi.go.id/en/tentang-bi/profil/uu-bi/Default.aspx
+
+일본 https://www.japaneselawtranslation.go.jp/ja/laws/view/3788
+
+중국 http://www.pbc.gov.cn/en/3688253/3689003/3709953/index.html
+
+체코 https://www.cnb.cz/en/about_cnb/mission/
+
+캄보디아 https://www.nbc.gov.kh/english/legislation/laws_applicable_to_banks_and_financial_institutions.php
+
+캐나다 https://laws-lois.justice.gc.ca/eng/acts/B-2/
+
+콜롬비아 https://www.banrep.gov.co/es/normatividad/normatividad-el-banco/ley-31-1992
+
+태국 https://www.bot.or.th/en/laws-and-rules/bot-takes-responsibilities-and-other-relevant-laws-and-regulations.html#accordion-66f68a5265-item-64765554e9
+
+튀르키예 https://www.tcmb.gov.tr/wps/wcm/connect/EN/TCMB+EN/Main+Menu/About+the+Bank/Legal+Framework
+
+파키스탄 https://www.sbp.org.pk/about/Lf.asp
+
+포르투갈 https://www.bportugal.pt/en/page/statute-banco-de-portugal
+
+폴란드 https://nbp.pl/en/about-nbp/legislation/?utm_source=chatgpt.com
+
+프랑스 https://www.legifrance.gouv.fr/loda/id/JORFTEXT000000180850/
+
+핀란드 https://www.suomenpankki.fi/en/bank-of-finland/our-strategy/status-and-administration/
+
+필리핀 https://www.bsp.gov.ph/Pages/AboutTheBank/SealCharterAndHistory/TheBSPCharter.aspx
+
+헝가리 https://www.mnb.hu/en/the-central-bank/organisation/unofficial-translation-of-mnb-act
+
+호주 https://www.legislation.gov.au/C1959A00004/latest/text

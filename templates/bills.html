@@ -1,0 +1,94 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="search-area">
+    <h2 class="search-title">
+        <i class="fas fa-file-alt me-2"></i>국회 의안 검색
+    </h2>
+    <form id="bills-search-form" action="{{ url_for('bill_search') }}" method="get" class="search-form">
+        <select name="assembly_term" class="assembly-term-select">
+            {% for term in assembly_terms %}
+            <option value="{{ term }}" {% if term|string == assembly_term|string %}selected{% endif %}>{{ term }}대</option>
+            {% endfor %}
+        </select>
+        <input type="text" name="keyword" placeholder="의안명을 입력하세요" value="{{ keyword|default('', true) }}" required>
+        <button type="button" class="search-button" onclick="applySearch('bills-search-form')">
+            <i class="fas fa-search me-1"></i> 검색
+        </button>
+    </form>
+</div>
+
+<div class="results-area">
+    <div class="results-title">
+        <span>검색 결과</span>
+        <span class="results-count">총 {{ total_count|default('0', true) }}건</span>
+    </div>
+
+    {% if error %}
+    <div class="error-message">
+        <i class="fas fa-exclamation-circle me-2"></i>{{ error }}
+    </div>
+    {% endif %}
+
+    {% if bills and bills|length > 0 %}
+    <div class="table-responsive">
+        <table class="results-table">
+            <thead>
+                <tr>
+                    <th>의안번호</th>
+                    <th>의안명</th>
+                    <th>제안자</th>
+                    <th>제안일</th>
+                    <th>상태</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for bill in bills %}
+                <tr>
+                    <td>{{ bill.bill_no }}</td>
+                    <td>
+                        <a href="{{ bill.url }}" target="_blank" title="{{ bill.bill_name }}">
+                            {{ bill.bill_name|truncate_text(50) }}
+                        </a>
+                    </td>
+                    <td>{{ bill.proposer }}</td>
+                    <td>{{ bill.propose_date }}</td>
+                    <td>{{ bill.status or '' }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Pagination -->
+    {% if total_pages > 1 %}
+    <div class="pagination">
+        <a href="{{ url_for('bill_search', assembly_term=assembly_term, keyword=keyword, page=current_page-1) if current_page > 1 else '#' }}" 
+           class="pagination-item {% if current_page <= 1 %}disabled{% endif %}"
+           {% if current_page > 1 %}data-page="{{ current_page-1 }}"{% endif %}>
+            <i class="fas fa-chevron-left"></i> 이전
+        </a>
+        
+        <span class="pagination-item active">
+            {{ current_page }} / {{ total_pages }}
+        </span>
+        
+        <a href="{{ url_for('bill_search', assembly_term=assembly_term, keyword=keyword, page=current_page+1) if current_page < total_pages else '#' }}" 
+           class="pagination-item {% if current_page >= total_pages %}disabled{% endif %}"
+           {% if current_page < total_pages %}data-page="{{ current_page+1 }}"{% endif %}>
+            다음 <i class="fas fa-chevron-right"></i>
+        </a>
+    </div>
+    {% endif %}
+    
+    {% elif keyword %}
+    <div class="alert alert-info" role="alert">
+        <i class="fas fa-info-circle me-2"></i>검색 결과가 없습니다.
+    </div>
+    {% else %}
+    <div class="alert alert-secondary" role="alert">
+        <i class="fas fa-info-circle me-2"></i>위에서 검색어를 입력하세요.
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

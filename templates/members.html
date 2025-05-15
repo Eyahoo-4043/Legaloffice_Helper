@@ -1,0 +1,89 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="search-area">
+    <h2 class="search-title">
+        <i class="fas fa-user me-2"></i>국회의원 검색
+    </h2>
+    <form id="members-search-form" action="{{ url_for('member_search') }}" method="get" class="search-form">
+        <select name="assembly_term" class="assembly-term-select">
+            {% for term in assembly_terms %}
+            <option value="{{ term }}" {% if term|string == assembly_term|string %}selected{% endif %}>{{ term }}대</option>
+            {% endfor %}
+        </select>
+        <input type="text" name="keyword" placeholder="의원 이름을 입력하세요" value="{{ keyword|default('', true) }}" required>
+        <button type="button" class="search-button" onclick="applySearch('members-search-form')">
+            <i class="fas fa-search me-1"></i> 검색
+        </button>
+    </form>
+</div>
+
+<div class="results-area">
+    <div class="results-title">
+        <span>검색 결과</span>
+        <span class="results-count">총 {{ members|length }}건</span>
+    </div>
+
+    {% if error %}
+    <div class="error-message">
+        <i class="fas fa-exclamation-circle me-2"></i>{{ error }}
+    </div>
+    {% endif %}
+
+    {% if members and members|length > 0 %}
+        {% for member in members %}
+        <div class="member-profile">
+            {% if member.photo_url %}
+            <img src="{{ member.photo_url }}" alt="{{ member.name }} 의원 사진" class="member-photo">
+            {% else %}
+            <div class="member-photo placeholder-glow">
+                <i class="fas fa-user fa-5x text-secondary d-flex justify-content-center align-items-center h-100"></i>
+            </div>
+            {% endif %}
+            
+            <div class="member-info">
+                <h3 class="member-name">
+                    {{ member.name }}
+                </h3>
+                
+                <div class="member-detail">
+                    <span class="member-label">정당:</span>
+                    <span class="member-value">{{ member.party }}</span>
+                </div>
+                
+                <div class="member-detail">
+                    <span class="member-label">지역구:</span>
+                    <span class="member-value">{{ member.district }}</span>
+                </div>
+                
+                <div class="member-detail">
+                    <span class="member-label">소속위원회:</span>
+                    <span class="member-value">{{ member.committee }}</span>
+                </div>
+                
+                <div class="member-detail">
+                    <span class="member-label">당선횟수:</span>
+                    <span class="member-value">{{ member.elected_times }}</span>
+                </div>
+                
+                <div class="member-detail">
+                    <span class="member-label">생년월일:</span>
+                    <span class="member-value">{{ member.birthday }}</span>
+                </div>
+            </div>
+        </div>
+        {% if not loop.last %}
+        <hr>
+        {% endif %}
+        {% endfor %}
+    {% elif keyword %}
+    <div class="alert alert-info" role="alert">
+        <i class="fas fa-info-circle me-2"></i>검색 결과가 없습니다.
+    </div>
+    {% else %}
+    <div class="alert alert-secondary" role="alert">
+        <i class="fas fa-info-circle me-2"></i>위에서 검색어를 입력하세요.
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

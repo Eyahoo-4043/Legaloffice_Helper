@@ -1,0 +1,84 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="search-area">
+    <h2 class="search-title">
+        <i class="fas fa-newspaper me-2"></i>네이버 뉴스 검색
+    </h2>
+    
+    <form id="news-search-form" action="{{ url_for('news_search') }}" method="get" class="search-form">
+        <input type="text" name="keyword" placeholder="검색어를 입력하세요" value="{{ keyword }}" required>
+        <button type="submit" class="search-button">
+            <i class="fas fa-search me-1"></i>검색
+        </button>
+    </form>
+    
+    <p class="text-muted mb-0">네이버 뉴스 API를 통해 최신 뉴스를 검색합니다.</p>
+</div>
+
+<div class="results-area">
+    <div class="results-title">
+        <span>뉴스 검색 결과</span>
+        {% if total_count is defined %}
+        <span class="results-count">총 {{ total_count }}건</span>
+        {% endif %}
+    </div>
+    
+    {% if error %}
+    <div class="error-message">
+        <i class="fas fa-exclamation-circle me-2"></i>{{ error }}
+    </div>
+    {% endif %}
+    
+    {% if message %}
+    <div class="alert alert-info" role="alert">
+        <i class="fas fa-info-circle me-2"></i>{{ message }}
+    </div>
+    {% endif %}
+    
+    {% if news_items and news_items|length > 0 %}
+        {% for item in news_items %}
+        <div class="press-item">
+            <h3 class="press-title">
+                <a href="{{ item.link }}" target="_blank">{{ item.title }}</a>
+            </h3>
+            <div class="press-date">
+                <i class="far fa-calendar-alt me-1"></i>{{ item.pub_date }}
+            </div>
+            <div class="press-description">
+                {{ item.description|striptags|truncate_text(200) }}
+            </div>
+        </div>
+        {% endfor %}
+        
+        <!-- Pagination -->
+        {% if total_pages > 1 %}
+        <div class="pagination">
+            <a href="{{ url_for('news_search', keyword=keyword, page=current_page-1) if current_page > 1 else '#' }}"
+               class="pagination-item {% if current_page <= 1 %}disabled{% endif %}"
+               {% if current_page > 1 %}data-page="{{ current_page-1 }}"{% endif %}>
+                <i class="fas fa-chevron-left"></i> 이전
+            </a>
+            
+            <span class="pagination-item active">
+                {{ current_page }} / {{ total_pages }}
+            </span>
+            
+            <a href="{{ url_for('news_search', keyword=keyword, page=current_page+1) if current_page < total_pages else '#' }}"
+               class="pagination-item {% if current_page >= total_pages %}disabled{% endif %}"
+               {% if current_page < total_pages %}data-page="{{ current_page+1 }}"{% endif %}>
+                다음 <i class="fas fa-chevron-right"></i>
+            </a>
+        </div>
+        {% endif %}
+    {% elif keyword %}
+    <div class="alert alert-info" role="alert">
+        <i class="fas fa-info-circle me-2"></i>검색 결과가 없습니다.
+    </div>
+    {% else %}
+    <div class="alert alert-secondary" role="alert">
+        <i class="fas fa-info-circle me-2"></i>위에서 검색어를 입력하세요.
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

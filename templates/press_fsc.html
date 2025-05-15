@@ -1,0 +1,64 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="search-area">
+    <h2 class="search-title">
+        <i class="fas fa-newspaper me-2"></i>금융위원회 보도자료
+    </h2>
+    <p class="mb-0">최신 금융위원회 보도자료를 확인하실 수 있습니다.</p>
+</div>
+
+<div class="results-area">
+    <div class="results-title">
+        <span>보도자료 목록</span>
+        <span class="results-count">총 {{ total_count|default('0', true) }}건</span>
+    </div>
+
+    {% if error %}
+    <div class="error-message">
+        <i class="fas fa-exclamation-circle me-2"></i>{{ error }}
+    </div>
+    {% endif %}
+
+    {% if items and items|length > 0 %}
+        {% for item in items %}
+        <div class="press-item">
+            <h3 class="press-title">
+                <a href="{{ item.link }}" target="_blank">{{ item.title }}</a>
+            </h3>
+            <div class="press-date">
+                <i class="far fa-calendar-alt me-1"></i>{{ item.pub_date }}
+            </div>
+            <div class="press-description">
+                {{ item.description|striptags|truncate_text(200) }}
+            </div>
+        </div>
+        {% endfor %}
+
+        <!-- Pagination -->
+        {% if total_pages > 1 %}
+        <div class="pagination">
+            <a href="{{ url_for('press_fsc', page=current_page-1) if current_page > 1 else '#' }}" 
+               class="pagination-item {% if current_page <= 1 %}disabled{% endif %}"
+               {% if current_page > 1 %}data-page="{{ current_page-1 }}"{% endif %}>
+                <i class="fas fa-chevron-left"></i> 이전
+            </a>
+            
+            <span class="pagination-item active">
+                {{ current_page }} / {{ total_pages }}
+            </span>
+            
+            <a href="{{ url_for('press_fsc', page=current_page+1) if current_page < total_pages else '#' }}" 
+               class="pagination-item {% if current_page >= total_pages %}disabled{% endif %}"
+               {% if current_page < total_pages %}data-page="{{ current_page+1 }}"{% endif %}>
+                다음 <i class="fas fa-chevron-right"></i>
+            </a>
+        </div>
+        {% endif %}
+    {% else %}
+    <div class="alert alert-info" role="alert">
+        <i class="fas fa-info-circle me-2"></i>보도자료를 불러올 수 없습니다.
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

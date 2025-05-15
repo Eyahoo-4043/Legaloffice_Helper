@@ -1,0 +1,462 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="central-bank-area">
+    <h2 class="search-title">
+        <i class="fas fa-university me-2"></i>해외 중앙은행법
+    </h2>
+    
+    <div class="alert alert-info" role="alert">
+        <i class="fas fa-info-circle me-2"></i>
+        해당 사이트는 영어 이외의 언어로 구성되어 있을 수 있으므로, 구글 번역 기능을 활용하는 것을 권장드립니다.
+    </div>
+
+    <h3 class="mt-4 mb-3">국가명(가나다 순)</h3>
+    
+    <div class="alphabet-tabs">
+        <div class="alphabet-tab" id="tab-ga">가</div>
+        <div class="alphabet-tab" id="tab-na">나</div>
+        <div class="alphabet-tab" id="tab-da">다</div>
+        <div class="alphabet-tab" id="tab-ra">라</div>
+        <div class="alphabet-tab" id="tab-ma">마</div>
+        <div class="alphabet-tab" id="tab-ba">바</div>
+        <div class="alphabet-tab" id="tab-sa">사</div>
+        <div class="alphabet-tab" id="tab-aa">아</div>
+        <div class="alphabet-tab" id="tab-ja">자</div>
+        <div class="alphabet-tab" id="tab-cha">차</div>
+        <div class="alphabet-tab" id="tab-ka">카</div>
+        <div class="alphabet-tab" id="tab-ta">타</div>
+        <div class="alphabet-tab" id="tab-pa">파</div>
+        <div class="alphabet-tab" id="tab-ha">하</div>
+    </div>
+    
+    <div class="country-lists">
+        <!-- 가 -->
+        <div class="country-list" id="list-ga">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>국가</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><a href="https://www.bankofgreece.gr/en/the-bank/legal-framework/statute" target="_blank">그리스</a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
+        <!-- 나 -->
+        <div class="country-list" id="list-na" style="display: none;">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>국가</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><a href="https://discover.sabinet.co.za/document/1169411" target="_blank">남아프리카공화국</a></td>
+                    </tr>
+                    <tr>
+                        <td><a href="https://wetten.overheid.nl/BWBR0009508/2025-01-01/0" target="_blank">네덜란드</a></td>
+                    </tr>
+                    <tr>
+                        <td><a href="https://lovdata.no/dokument/NL/lov/2019-06-21-31?q=Sentralbankloven" target="_blank">노르웨이</a></td>
+                    </tr>
+                    <tr>
+                        <td><a href="https://www.legislation.govt.nz/act/public/2021/0031/latest/LMS286978.html?search=ts_act%40bill%40regulation%40deemedreg_Reserve+Bank+of+New+Zealand+Act+2021_resel_25_a&p=1" target="_blank">뉴질랜드</a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
+        <!-- 다 -->
+        <div class="country-list" id="list-da" style="display: none;">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>국가</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><a href="https://www.law.cbc.gov.tw/ELaw/LawSearchShowAll?LawID=LA01001005&selectValue1=AND&selectValue2=AND&keyword1=central%20bank" target="_blank">대만</a></td>
+                    </tr>
+                    <tr>
+                        <td><a href="https://www.retsinformation.dk/eli/lta/1936/116" target="_blank">덴마크</a></td>
+                    </tr>
+                    <tr>
+                        <td><a href="https://www.gesetze-im-internet.de/bbankg/index.html" target="_blank">독일</a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
+        <!-- 라 -->
+        <div class="country-list" id="list-ra" style="display: none;">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>국가</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><a href="http://www.kremlin.ru/acts/bank/18296/page/1" target="_blank">러시아</a></td>
+                    </tr>
+                    <tr>
+                        <td><a href="https://www.bcl.lu/en/Legal-Framework/documents_national/loi_organique/Organic-law-consol/index.html" target="_blank">룩셈부르크</a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
+        <!-- 마 -->
+        <div class="country-list" id="list-ma" style="display: none;">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>국가</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><a href="https://www.bnm.gov.my/-/central-bank-of-malaysia-act-2009-1" target="_blank">말레이시아</a></td>
+                    </tr>
+                    <tr>
+                        <td><a href="https://www.banxico.org.mx/marco-normativo/marco-juridico/ley-del-banco-de-mexico/ley-del-banco-mexico-marco-le.html" target="_blank">멕시코</a></td>
+                    </tr>
+                    <tr>
+                        <td><a href="https://www.bkam.ma/en/About-us/Statute-and-missions" target="_blank">모로코</a></td>
+                    </tr>
+                    <tr>
+                        <td><a href="https://www.mongolbank.mn/en/r/2905" target="_blank">몽골</a></td>
+                    </tr>
+                    <tr>
+                        <td><a href="https://www.govinfo.gov/app/details/COMPS-270/" target="_blank">미국</a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
+        <!-- 바 -->
+        <div class="country-list" id="list-ba" style="display: none;">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>국가</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><a href="https://vbpl.vn/TW/Pages/vbpq-toanvan.aspx?ItemID=25692&Keyword=Ng%C3%A2n%20h%C3%A0ng%20Nh%C3%A0%20n%C6%B0%E1%BB%9Bc%20Vi%E1%BB%87t%20Nam" target="_blank">베트남</a></td>
+                    </tr>
+                    <tr>
+                        <td><a href="https://www.ejustice.just.fgov.be/cgi_wet/article.pl?language=nl&sum_date=&pd_search=1998-03-28&numac_search=1998003158&page=1&lg_txt=N&caller=list&1998003158=0&trier=afkondiging&nl=n&nm_ecran=1998003158&choix1=en&choix2=en" target="_blank">벨기에</a></td>
+                    </tr>
+                    <tr>
+                        <td><a href="https://www.planalto.gov.br/ccivil_03/leis/l4595.htm" target="_blank">브라질</a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
+        <!-- 사 -->
+        <div class="country-list" id="list-sa" style="display: none;">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>국가</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><a href="https://laws.boe.gov.sa/BoeLaws/Laws/LawDetails/a292ec7e-85fb-4ceb-9ad0-ac9200ced829/1" target="_blank">사우디아라비아</a></td>
+                    </tr>
+                    <tr>
+                        <td><a href="https://www.riksdagen.se/sv/dokument-och-lagar/dokument/svensk-forfattningssamling/lag-20221568-om-sveriges-riksbank_sfs-2022-1568/" target="_blank">스웨덴</a></td>
+                    </tr>
+                    <tr>
+                        <td><a href="https://www.fedlex.admin.ch/eli/cc/2004/221/en" target="_blank">스위스</a></td>
+                    </tr>
+                    <tr>
+                        <td><a href="https://www.boe.es/buscar/doc.php?id=BOE-A-1994-12553" target="_blank">스페인</a></td>
+                    </tr>
+                    <tr>
+                        <td><a href="https://sso.agc.gov.sg/Act/MASA1970" target="_blank">싱가포르</a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
+        <!-- 아 -->
+        <div class="country-list" id="list-aa" style="display: none;">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>국가</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><a href="https://uaelegislation.gov.ae/en/legislations/1083?keyword=central%20bank" target="_blank">아랍에미리트</a></td>
+                    </tr>
+                    <tr>
+                        <td><a href="https://www.bcra.gob.ar/Institucional/Carta_Organica.asp" target="_blank">아르헨티나</a></td>
+                    </tr>
+                    <tr>
+                        <td><a href="https://www.althingi.is/lagas/nuna/2019092.html" target="_blank">아이슬란드</a></td>
+                    </tr>
+                    <tr>
+                        <td><a href="https://revisedacts.lawreform.ie/eli/2010/act/23/front/revised/en/html" target="_blank">아일랜드</a></td>
+                    </tr>
+                    <tr>
+                        <td><a href="https://www.legislation.gov.uk/ukpga/1998/11/contents" target="_blank">영국</a></td>
+                    </tr>
+                    <tr>
+                        <td><a href="https://www.ris.bka.gv.at/GeltendeFassung.wxe?Abfrage=Bundesnormen&Gesetzesnummer=10004409" target="_blank">오스트리아</a></td>
+                    </tr>
+                    <tr>
+                        <td><a href="https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:12016E/PRO/04" target="_blank">EU</a></td>
+                    </tr>
+                    <tr>
+                        <td><a href="https://www.bancaditalia.it/chi-siamo/funzioni-governance/disposizioni-generali/index.html" target="_blank">이탈리아</a></td>
+                    </tr>
+                    <tr>
+                        <td><a href="https://www.indiacode.nic.in/handle/123456789/1408?view_type=search&col=123456789/1362" target="_blank">인도</a></td>
+                    </tr>
+                    <tr>
+                        <td><a href="https://www.bi.go.id/en/tentang-bi/profil/uu-bi/Default.aspx" target="_blank">인도네시아</a></td>
+                    </tr>
+                    <tr>
+                        <td><a href="https://www.japaneselawtranslation.go.jp/ja/laws/view/3788" target="_blank">일본</a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
+        <!-- 자 -->
+        <div class="country-list" id="list-ja" style="display: none;">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>국가</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><a href="http://www.pbc.gov.cn/en/3688253/3689003/3709953/index.html" target="_blank">중국</a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
+        <!-- 차 -->
+        <div class="country-list" id="list-cha" style="display: none;">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>국가</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><a href="https://www.cnb.cz/en/about_cnb/mission/" target="_blank">체코</a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
+        <!-- 카 -->
+        <div class="country-list" id="list-ka" style="display: none;">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>국가</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><a href="https://www.nbc.gov.kh/english/legislation/laws_applicable_to_banks_and_financial_institutions.php" target="_blank">캄보디아</a></td>
+                    </tr>
+                    <tr>
+                        <td><a href="https://laws-lois.justice.gc.ca/eng/acts/B-2/" target="_blank">캐나다</a></td>
+                    </tr>
+                    <tr>
+                        <td><a href="https://www.banrep.gov.co/es/normatividad/normatividad-el-banco/ley-31-1992" target="_blank">콜롬비아</a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
+        <!-- 타 -->
+        <div class="country-list" id="list-ta" style="display: none;">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>국가</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><a href="https://www.bot.or.th/en/laws-and-rules/bot-takes-responsibilities-and-other-relevant-laws-and-regulations.html#accordion-66f68a5265-item-64765554e9" target="_blank">태국</a></td>
+                    </tr>
+                    <tr>
+                        <td><a href="https://www.tcmb.gov.tr/wps/wcm/connect/EN/TCMB+EN/Main+Menu/About+the+Bank/Legal+Framework" target="_blank">튀르키예</a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
+        <!-- 파 -->
+        <div class="country-list" id="list-pa" style="display: none;">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>국가</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><a href="https://www.sbp.org.pk/about/Lf.asp" target="_blank">파키스탄</a></td>
+                    </tr>
+                    <tr>
+                        <td><a href="https://www.bportugal.pt/en/page/statute-banco-de-portugal" target="_blank">포르투갈</a></td>
+                    </tr>
+                    <tr>
+                        <td><a href="https://nbp.pl/en/about-nbp/legislation/?utm_source=chatgpt.com" target="_blank">폴란드</a></td>
+                    </tr>
+                    <tr>
+                        <td><a href="https://www.legifrance.gouv.fr/loda/id/JORFTEXT000000180850/" target="_blank">프랑스</a></td>
+                    </tr>
+                    <tr>
+                        <td><a href="https://www.suomenpankki.fi/en/bank-of-finland/our-strategy/status-and-administration/" target="_blank">핀란드</a></td>
+                    </tr>
+                    <tr>
+                        <td><a href="https://www.bsp.gov.ph/Pages/AboutTheBank/SealCharterAndHistory/TheBSPCharter.aspx" target="_blank">필리핀</a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
+        <!-- 하 -->
+        <div class="country-list" id="list-ha" style="display: none;">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>국가</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><a href="https://www.mnb.hu/en/the-central-bank/organisation/unofficial-translation-of-mnb-act" target="_blank">헝가리</a></td>
+                    </tr>
+                    <tr>
+                        <td><a href="https://www.legislation.gov.au/C1959A00004/latest/text" target="_blank">호주</a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Default tab shown
+    showCountryList('ga');
+    
+    // Tab event listeners
+    const tabs = document.querySelectorAll('.alphabet-tab');
+    tabs.forEach(tab => {
+        tab.addEventListener('click', function() {
+            const tabId = this.id.split('-')[1];
+            showCountryList(tabId);
+        });
+    });
+    
+    function showCountryList(tabId) {
+        // Hide all lists
+        document.querySelectorAll('.country-list').forEach(list => {
+            list.style.display = 'none';
+        });
+        
+        // Deactivate all tabs
+        document.querySelectorAll('.alphabet-tab').forEach(tab => {
+            tab.classList.remove('active');
+        });
+        
+        // Show selected list and activate tab
+        document.getElementById(`list-${tabId}`).style.display = 'block';
+        document.getElementById(`tab-${tabId}`).classList.add('active');
+    }
+});
+</script>
+
+<style>
+.alphabet-tabs {
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #ddd;
+}
+
+.alphabet-tab {
+    padding: 10px 15px;
+    cursor: pointer;
+    border: 1px solid transparent;
+    margin-right: 5px;
+    margin-bottom: 5px;
+    border-radius: 5px 5px 0 0;
+    background-color: #f8f9fa;
+    transition: all 0.3s;
+}
+
+.alphabet-tab:hover {
+    background-color: #e9ecef;
+}
+
+.alphabet-tab.active {
+    border-color: #ddd;
+    border-bottom-color: white;
+    background-color: white;
+    font-weight: bold;
+}
+
+.country-list {
+    margin-top: 20px;
+}
+
+.country-list table {
+    width: 100%;
+    margin-bottom: 1rem;
+    border-collapse: collapse;
+}
+
+.country-list th, .country-list td {
+    padding: 0.75rem;
+    vertical-align: top;
+    border-top: 1px solid #dee2e6;
+}
+
+.country-list th {
+    vertical-align: bottom;
+    border-bottom: 2px solid #dee2e6;
+    background-color: #f8f9fa;
+}
+
+.country-list tbody tr:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
+.country-list a {
+    text-decoration: none;
+    color: #0d6efd;
+}
+
+.country-list a:hover {
+    text-decoration: underline;
+}
+</style>
+{% endblock %}

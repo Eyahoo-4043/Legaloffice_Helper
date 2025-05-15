@@ -1,0 +1,368 @@
+/* Base styles */
+body {
+    font-family: 'Noto Sans KR', 'Malgun Gothic', sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #f8f9fa;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 15px;
+}
+
+/* Header styles */
+.site-header {
+    background-color: #ffffff;
+    border-bottom: 1px solid #e7e7e7;
+    padding: 15px 0;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.site-title {
+    font-size: 24px;
+    font-weight: 700;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+/* Search area styles */
+.search-area {
+    background-color: #fff;
+    border-radius: 6px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.search-title {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 15px;
+    color: #333;
+}
+
+.search-form {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.search-form select,
+.search-form input {
+    padding: 8px 12px;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+.search-form select {
+    min-width: 120px;
+}
+
+.search-form input {
+    flex-grow: 1;
+}
+
+.search-button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 8px 16px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.search-button:hover {
+    background-color: #0069d9;
+}
+
+/* Results area styles */
+.results-area {
+    background-color: #fff;
+    border-radius: 6px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.results-title {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 15px;
+    color: #333;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.results-count {
+    font-size: 14px;
+    color: #6c757d;
+}
+
+.results-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+    font-size: 14px;
+}
+
+.results-table th,
+.results-table td {
+    border: 1px solid #e9ecef;
+    padding: 12px;
+    text-align: left;
+}
+
+.results-table th {
+    background-color: #f8f9fa;
+    font-weight: 600;
+}
+
+.results-table tr:hover {
+    background-color: #f8f9fa;
+}
+
+.results-table a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.results-table a:hover {
+    text-decoration: underline;
+}
+
+/* Pagination styles */
+.pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.pagination-item {
+    margin: 0 5px;
+    padding: 8px 12px;
+    border: 1px solid #dee2e6;
+    border-radius: 4px;
+    color: #007bff;
+    background-color: #fff;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background-color 0.3s;
+}
+
+.pagination-item:hover {
+    background-color: #f8f9fa;
+}
+
+.pagination-item.active {
+    background-color: #007bff;
+    color: #fff;
+    border-color: #007bff;
+}
+
+.pagination-item.disabled {
+    color: #6c757d;
+    pointer-events: none;
+    cursor: not-allowed;
+}
+
+/* Tab navigation styles */
+.tab-nav {
+    display: flex;
+    border-bottom: 1px solid #dee2e6;
+    margin-bottom: 20px;
+}
+
+.tab-item {
+    padding: 10px 20px;
+    cursor: pointer;
+    border: 1px solid transparent;
+    border-bottom: none;
+    margin-bottom: -1px;
+    background-color: transparent;
+    font-weight: 500;
+    color: #6c757d;
+    transition: all 0.3s;
+}
+
+.tab-item:hover {
+    color: #007bff;
+}
+
+.tab-item.active {
+    color: #495057;
+    background-color: #fff;
+    border-color: #dee2e6;
+    border-bottom-color: #fff;
+}
+
+/* Settings form styles */
+.settings-form {
+    background-color: #fff;
+    border-radius: 6px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 500;
+}
+
+.form-group input,
+.form-group select {
+    width: 100%;
+    padding: 8px 12px;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+.save-button {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.save-button:hover {
+    background-color: #218838;
+}
+
+/* Error message styles */
+.error-message {
+    color: #dc3545;
+    background-color: #f8d7da;
+    border: 1px solid #f5c6cb;
+    border-radius: 4px;
+    padding: 10px 15px;
+    margin-bottom: 20px;
+}
+
+/* Member profile styles */
+.member-profile {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.member-photo {
+    width: 120px;
+    height: 160px;
+    object-fit: cover;
+    border-radius: 4px;
+    border: 1px solid #dee2e6;
+}
+
+.member-info {
+    flex-grow: 1;
+}
+
+.member-name {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.member-detail {
+    margin-bottom: 5px;
+    display: flex;
+}
+
+.member-label {
+    width: 120px;
+    font-weight: 500;
+    color: #6c757d;
+}
+
+.member-value {
+    flex-grow: 1;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+    .search-form {
+        flex-direction: column;
+    }
+    
+    .search-form select {
+        width: 100%;
+    }
+    
+    .member-profile {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+    
+    .member-detail {
+        flex-direction: column;
+    }
+    
+    .member-label {
+        width: 100%;
+        margin-bottom: 2px;
+    }
+    
+    .tab-item {
+        padding: 8px 12px;
+        font-size: 14px;
+    }
+}
+
+/* Press release item styles */
+.press-item {
+    border-bottom: 1px solid #dee2e6;
+    padding-bottom: 15px;
+    margin-bottom: 15px;
+}
+
+.press-item:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+}
+
+.press-title {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+.press-title a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.press-title a:hover {
+    text-decoration: underline;
+}
+
+.press-date {
+    font-size: 12px;
+    color: #6c757d;
+    margin-bottom: 8px;
+}
+
+.press-description {
+    font-size: 14px;
+    color: #495057;
+}

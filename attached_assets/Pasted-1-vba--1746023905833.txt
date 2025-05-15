@@ -1,0 +1,278 @@
+1. 의안 및 의원페이지의 검색은 여전히 작동하지 않고 있어. 이거 왜 이런지 내가 올려준 모듈 내용을 확인해서 수정해봐
+(엑셀에서 현재 구동중인 vba야 구조만 참고)
+
+의안 : ' ===== [전역 변수 선언] =====
+Public currentPage As Integer
+Public totalResults As Integer
+Public resultNodes As Object
+
+' ===== [검색 및 결과 초기 로딩 함수] =====
+Sub SearchBillProposals()
+    Dim ws As Worksheet
+    Set ws = ThisWorkbook.Sheets("bill_search")
+
+    Dim searchTerm As String
+    searchTerm = Trim(ws.Range("B7").Value)
+
+    Dim ageText As String
+    ageText = Trim(ws.OLEObjects("cbage").Object.Text)
+
+    If searchTerm = "" Or ageText = "" Then
+        MsgBox "검색어 또는 대수를 입력해주세요.", vbExclamation
+        Exit Sub
+    End If
+
+    Dim AGE As String
+    AGE = Left(ageText, InStr(ageText, "대") - 1)
+
+    Dim encodedSearchTerm As String
+    encodedSearchTerm = WorksheetFunction.EncodeURL(searchTerm)
+
+    Dim url As String
+    url = "https://open.assembly.go.kr/portal/openapi/nzmimeepazxkubdpn?" & _
+          "KEY=aaaadb7517494adf9aa2b11398b3fd76" & _
+          "&Type=xml" & _
+          "&AGE=" & AGE & _
+          "&BILL_NAME=" & encodedSearchTerm & _
+          "&pIndex=1&pSize=100"
+
+    Dim xml As Object
+    Set xml = CreateObject("MSXML2.DOMDocument.6.0")
+    xml.async = False
+    xml.Load url
+
+    Set resultNodes = xml.getElementsByTagName("row")
+    totalResults = resultNodes.Length
+
+    If totalResults = 0 Then
+        MsgBox "검색 결과가 없습니다.", vbInformation
+        ws.Range("B11:M15").ClearContents
+        ws.Range("B11:M15").Borders.LineStyle = xlNone
+        ws.Shapes("txtPageInfo").TextFrame.Characters.Text = ""
+        Exit Sub
+    End If
+
+    currentPage = 1
+    ShowPage
+End Sub
+
+' ===== [페이지별 결과 표시 함수] =====
+Sub ShowPage()
+    Dim ws As Worksheet
+    Set ws = ThisWorkbook.Sheets("bill_search")
+
+    ws.Range("B11:M15").ClearContents
+    ws.Range("B11:M15").Borders.LineStyle = xlNone
+
+    Dim i As Integer, displayCount As Integer
+    Dim startIdx As Integer: startIdx = (currentPage - 1) * 5
+
+    If resultNodes Is Nothing Then Exit Sub
+
+    displayCount = WorksheetFunction.Min(5, totalResults - startIdx)
+
+    For i = 0 To displayCount - 1
+        Dim rowNode As Object
+        Set rowNode = resultNodes.Item(startIdx + i)
+
+        With ws
+            .rows(11 + i).RowHeight = 32
+            .Cells(11 + i, 2).Value = startIdx + i + 1
+            .Cells(11 + i, 3).Value = rowNode.SelectSingleNode("BILL_NO").Text
+            .Cells(11 + i, 4).Value = rowNode.SelectSingleNode("AGE").Text
+            .Hyperlinks.Add Anchor:=.Cells(11 + i, 5), _
+                            Address:=rowNode.SelectSingleNode("DETAIL_LINK").Text, _
+                            TextToDisplay:=rowNode.SelectSingleNode("BILL_NAME").Text
+            .Cells(11 + i, 6).Value = rowNode.SelectSingleNode("PROPOSER").Text
+            .Cells(11 + i, 7).Value = rowNode.SelectSingleNode("RST_PROPOSER").Text
+            .Cells(11 + i, 8).Value = rowNode.SelectSingleNode("PROPOSE_DT").Text
+            .Cells(11 + i, 9).Value = rowNode.SelectSingleNode("COMMITTEE").Text
+            .Cells(11 + i, 10).Value = rowNode.SelectSingleNode("COMMITTEE_DT").Text
+            .Cells(11 + i, 11).Value = rowNode.SelectSingleNode("CMT_PROC_RESULT_CD").Text
+            .Cells(11 + i, 12).Value = rowNode.SelectSingleNode("PROC_DT").Text
+            .Cells(11 + i, 13).Value = rowNode.SelectSingleNode("PROC_RESULT").Text
+
+            .Range(.Cells(11 + i, 2), .Cells(11 + i, 13)).Borders.LineStyle = xlContinuous
+            .Range(.Cells(11 + i, 2), .Cells(11 + i, 13)).WrapText = True
+        End With
+    Next i
+
+    ' 페이지 정보 텍스트박스 업데이트
+    Dim totalPages As Integer
+    totalPages = Application.WorksheetFunction.Ceiling(totalResults / 5, 1)
+
+    On Error Resume Next
+    ws.Shapes("txtPageInfo").TextFrame.Characters.Text = "페이지 " & currentPage & " / " & totalPages
+    On Error GoTo 0
+End Sub
+
+' ===== [이전 페이지 버튼 매크로] =====
+Sub PrevPage()
+    If currentPage > 1 Then
+        currentPage = currentPage - 1
+        ShowPage
+    End If
+End Sub
+
+' ===== [다음 페이지 버튼 매크로] =====
+Sub NextPage()
+    If currentPage * 5 < totalResults Then
+        currentPage = currentPage + 1
+        ShowPage
+    End If
+End Sub
+
+의원 : ' ===== [전역 변수 선언] =====
+Public memberCurrentPage As Integer
+Public memberTotalResults As Integer
+Public memberFilteredNodes As Collection
+
+' ===== [의원검색 초기 함수] =====
+Sub SearchMemberInfo()
+    Dim ws As Worksheet
+    Set ws = ThisWorkbook.Sheets("bill_search")
+
+    Dim searchTerm As String
+    searchTerm = Trim(ws.Range("B25").Value)
+
+    Dim ageText As String
+    ageText = Trim(ws.OLEObjects("cbAge2").Object.Text)
+
+    If ageText = "" Then
+        MsgBox "대수를 선택해주세요.", vbExclamation
+        Exit Sub
+    End If
+
+    ' 대수 추출: 앞에서부터 숫자만 추출
+    Dim AGE As String
+    Dim i As Integer
+    AGE = ""
+    For i = 1 To Len(ageText)
+        If Mid(ageText, i, 1) Like "[0-9]" Then
+            AGE = AGE & Mid(ageText, i, 1)
+        Else
+            Exit For
+        End If
+    Next i
+
+    Dim encodedSearchTerm As String
+    encodedSearchTerm = WorksheetFunction.EncodeURL(searchTerm)
+
+    Dim url As String
+    url = "https://open.assembly.go.kr/portal/openapi/nwvrqwxyaytdsfvhu?" & _
+          "KEY=f02f6172a7db4d4c98422a0981195f41" & _
+          "&Type=xml" & _
+          "&AGE=" & AGE & _
+          IIf(searchTerm <> "", "&HG_NM=" & encodedSearchTerm, "") & _
+          "&pIndex=1&pSize=100"
+
+    Dim xml As Object
+    Set xml = CreateObject("MSXML2.DOMDocument.6.0")
+    xml.async = False
+    xml.Load url
+
+    Dim resultNodes As Object
+    Set resultNodes = xml.getElementsByTagName("row")
+
+    Set memberFilteredNodes = New Collection
+    Dim node As Object
+    For Each node In resultNodes
+        Dim unitsText As String
+        unitsText = node.SelectSingleNode("UNITS").Text
+        If InStr(unitsText, AGE & "´") > 0 Or InStr(unitsText, AGE & "대") > 0 Then ' 예: "22´", "22대"
+            memberFilteredNodes.Add node
+        End If
+    Next node
+
+    memberTotalResults = memberFilteredNodes.Count
+
+    If memberTotalResults = 0 Then
+        MsgBox "검색 결과가 없습니다.", vbInformation
+        ClearMemberResults
+        Exit Sub
+    End If
+
+    memberCurrentPage = 1
+    ShowMemberPage
+End Sub
+
+' ===== [의원검색 페이지 출력 함수] =====
+Sub ShowMemberPage()
+    Dim ws As Worksheet
+    Set ws = ThisWorkbook.Sheets("bill_search")
+
+    ws.Range("B29:M33").ClearContents
+    ws.Range("B29:M33").Borders.LineStyle = xlNone
+
+    If memberFilteredNodes Is Nothing Then Exit Sub
+
+    Dim startIdx As Integer: startIdx = (memberCurrentPage - 1) * 5
+    Dim endIdx As Integer: endIdx = WorksheetFunction.Min(memberTotalResults, startIdx + 5)
+    Dim i As Integer, rowIdx As Integer
+    rowIdx = 0
+
+    For i = startIdx + 1 To endIdx
+        Dim rowNode As Object
+        Set rowNode = memberFilteredNodes(i)
+
+        With ws
+            .rows(29 + rowIdx).RowHeight = 32
+            .Cells(29 + rowIdx, 2).Value = i
+            .Cells(29 + rowIdx, 3).Value = rowNode.SelectSingleNode("HG_NM").Text
+            .Cells(29 + rowIdx, 6).Value = rowNode.SelectSingleNode("POLY_NM").Text
+            .Cells(29 + rowIdx, 7).Value = rowNode.SelectSingleNode("ORIG_NM").Text
+            .Cells(29 + rowIdx, 9).Value = rowNode.SelectSingleNode("CMIT_NM").Text
+            .Cells(29 + rowIdx, 10).Value = rowNode.SelectSingleNode("REELE_GBN_NM").Text
+            .Cells(29 + rowIdx, 11).Value = rowNode.SelectSingleNode("UNITS").Text
+            .Cells(29 + rowIdx, 13).Value = rowNode.SelectSingleNode("SEX_GBN_NM").Text
+
+            .Range(.Cells(29 + rowIdx, 2), .Cells(29 + rowIdx, 13)).Borders.LineStyle = xlContinuous
+            .Range(.Cells(29 + rowIdx, 2), .Cells(29 + rowIdx, 13)).WrapText = True
+        End With
+
+        rowIdx = rowIdx + 1
+    Next i
+
+    Dim totalPages As Integer
+    totalPages = Application.WorksheetFunction.Ceiling(memberTotalResults / 5, 1)
+
+    On Error Resume Next
+    ws.Shapes("txtMemberPageInfo").TextFrame.Characters.Text = "페이지 " & memberCurrentPage & " / " & totalPages
+    On Error GoTo 0
+End Sub
+
+' ===== [의원검색 결과 클리어 함수] =====
+Sub ClearMemberResults()
+    Dim ws As Worksheet
+    Set ws = ThisWorkbook.Sheets("bill_search")
+    ws.Range("B29:M33").ClearContents
+    ws.Range("B29:M33").Borders.LineStyle = xlNone
+    On Error Resume Next
+    ws.Shapes("txtMemberPageInfo").TextFrame.Characters.Text = ""
+    On Error GoTo 0
+End Sub
+
+' ===== [의원검색 이전 페이지] =====
+Sub PrevMemberPage()
+    If memberCurrentPage > 1 Then
+        memberCurrentPage = memberCurrentPage - 1
+        ShowMemberPage
+    End If
+End Sub
+
+' ===== [의원검색 다음 페이지] =====
+Sub NextMemberPage()
+    If memberCurrentPage * 5 < memberTotalResults Then
+        memberCurrentPage = memberCurrentPage + 1
+        ShowMemberPage
+    End If
+End Sub
+
+그리고 금융위 보도자료는 현재 제목 밑에 날짜가 표시가 안되고 있어. 날짜데이터를 못읽어오는건가? 분명 금융위 보도자료 rss에 dc:date로 표시가 되고있는데 못일거오는 중이야
+
+설정의 국회 OpenAPI키는 현재 사용중인 키와 일치시켜. 그리고  변경 버튼을 추가해서 사용자별로 임의로 api키를 변경할 수 있도록 해줘
+설정의 자료출처는 링크로 걸지말고 자료출처  제목 오른쪽끝에 동그라미 안에 ? 표시 넣은 기호를 클릭하면 각 주소들이 표시되는 형식으로 바꿔줘 해당 페이지의 제목은 OPEN API 및 RSS로 할거야.
+
+전체 제목은 국회 검색 시스템인데 이거 오키피디아로 바꿔줘
+
+결론은 현재 기재부 보도자료 페이지만 정상이고 나머지는 다 비정상
